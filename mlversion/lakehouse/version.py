@@ -13,7 +13,7 @@ class ObjIO:
         
 class ObjectVersion(ObjIO):
 
-    def __init__(self, table, version=None, id=None, object=None):
+    def __init__(self, table, database="objects", version=None, id=None, object=None):
 
         # if both version & id throw error
         
@@ -92,4 +92,14 @@ class ObjectVersion(ObjIO):
     
 
 
+"""
+old_version = ObjectVersion(database="models", version="HEAD")
+
+new_model = LinearRegression().fit(X, y)
+new_version = ObjectVersion(database='models', table='kpi_model', object=new_model).commit()
+
+old_predictions = old_version.object.predict(X, y)
+new_predictions = new_version.object.predict(X, y)
+
+"""
     
