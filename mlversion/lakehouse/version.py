@@ -2,17 +2,8 @@ import dill
 import pyarrow as pa
 from urllib.parse import urlparse
 
-class ObjIO:
 
-    def write(self, filename):
-        with open(filename, 'wb') as file:
-            return dill.dump(self, file)
-    
-    def load(self, filename):
-        with open(filename, 'rb') as file:
-            dill.load(file)
-        
-class ObjectVersion(ObjIO):
+class ObjectVersion:
 
     def __init__(self, table, database="objects", version=None, id=None, object=None):
 
