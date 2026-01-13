@@ -5,16 +5,15 @@ from urllib.parse import urlparse
 
 class ObjectVersion:
 
-    def __init__(self, table, database="objects", version=None, id=None, object=None):
-
-        # if both version & id throw error
-        
-        # if id query for version id
+    def __init__(self, table, database="objects", version=None, object=None):
 
         # if version query for version
+        self._version = version
 
-        # if neither version or id create new version
-        self.generate_new_version(object)
+        # store 
+        self._object = object
+        self.table = table
+        self.database = database
 
         pass
 
@@ -33,20 +32,21 @@ class ObjectVersion:
         pass
 
 
-
-    def generate_new_version(self, object):
+    @property
+    def version(self):
         """
         Should support whatever versioning schema is appropriate
         
         :param self: Description
         """
-        self._object = object
+        if hasattr(self, '_version'):
+            return self._version
         
         # determine version
         version = None
 
-        #
-        pass
+        return version
+
     
     @property
     def metadata(self, object):
