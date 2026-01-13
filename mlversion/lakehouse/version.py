@@ -1,4 +1,5 @@
 import dill
+import pyarrow as pa
 from urllib.parse import urlparse
 
 class ObjIO:
@@ -52,13 +53,21 @@ class ObjectVersion(ObjIO):
 
         #
         pass
-
-    def generate_metadata(self, object):
-        pass
     
     @property
-    def metadata_schema(self):
-        pass
+    def metadata(self, object):
+        
+        if hasattr(self, '_metadata'):
+            return self._metadata
+        
+        self._metadata = self.generate_metadata()
+        return self._metadata
+    
+    
+    def generate_metadata(self):
+
+        return pa.Table.from_pylist([])
+  
 
     @property
     def data(self):
@@ -100,6 +109,6 @@ new_version = ObjectVersion(database='models', table='kpi_model', object=new_mod
 
 old_predictions = old_version.object.predict(X, y)
 new_predictions = new_version.object.predict(X, y)
-
 """
     
+
