@@ -21,14 +21,17 @@ class ObjectVersion:
     def commit(self):
 
         # generate path for object, partitioned by version
+        # https://stackoverflow.com/questions/78933802/how-to-create-a-partitioned-table-in-python-using-pyiceberg-with-pyarrow
 
         # use dill to write to object path
+
 
         # write iceberg table containing version, write_timestamp, id, path to stored object, and self.metadata()
 
         # returns Version(self.table, self.version)
 
         pass
+
 
 
     def generate_new_version(self, object):
